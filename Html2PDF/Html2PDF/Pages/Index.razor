@@ -1,0 +1,40 @@
+﻿@page "/"
+
+@using MudBlazor
+@inject IJSRuntime js
+
+
+<PageTitle>Index</PageTitle>
+
+<MudContainer id="main-container">
+    <MudInput T="string" @bind-Value="@name" Label="Name" Placeholder="Enter your name" /><br />
+    <MudInput T="string" @bind-Value="@email" Label="Email" Placeholder="Enter your email" /><br />
+    <MudInput T="string" @bind-Value="@phone" Label="Mobile Number" Placeholder="Enter your mobile number" /><br />
+</MudContainer>
+<MudButton OnClick="DownloadPDF">Download PDF</MudButton>
+
+
+
+@*<MudButton OnClick="DownloadPDF">Download PDF</MudButton>*@
+
+
+@code {
+    string name, email, phone;
+
+    void DownloadPDF()
+    {
+        js.InvokeVoidAsync("generatePDF",
+                                name,
+                                email,
+                                phone
+                                );
+    }
+
+    
+
+    //void DownloadPDF()
+    //{
+    //    js.InvokeVoidAsync("generatePDF");
+    //}
+}
+
